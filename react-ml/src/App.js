@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import Form from './components/Form';
 import Filter from './components/Filter';
+import { getTracks } from  './AC/tracks';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
         <div>
             <Form state={ this.props.tracks } onAddTrack={ this.props.onAddTrack }/>
             <Filter  filterTrack={ this.props.filterTrack }/>
+            <button onClick={this.props.onGetTrack}>Get tracks</button>
         </div>
     );
   }
@@ -35,6 +37,10 @@ export default connect(
                 type: 'ADD_TRACK',
                 payload
             })
+        },
+        onGetTrack: () => {
+             dispatch(getTracks());
         }
+
     })
 )(App);
